@@ -1,0 +1,30 @@
+name: Build and send to Container Registry
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker build -t azurecloudweek.azurecr.io/emojisearch:${{ github.sha }} .
+      name: Build the Docker image
+    
+    - uses: Azure/docker-login@v1
+      name: Azure Container Registry Login
+      with:
+        # Container registry username
+        username: ${{ secrets.AZURE_USER_CR }}
+        # Container registry password
+        password: ${{ secrets.AZURE_PASS_CR }}
+        # Container registry server url
+        login-server: azurecloudweek.azurecr.io
+    
+    - run: docker push azurecloudweek.azurecr.io/emojisearch:${{ github.sha }}
