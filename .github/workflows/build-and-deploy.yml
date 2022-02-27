@@ -27,4 +27,4 @@ jobs:
         # Container registry server url
         login-server: azurecloudweek.azurecr.io
     
-    - run: docker push azurecloudweek.azurecr.io/emojisearch --all-tags
+    - run: docker push azurecloudweek.azurecr.io/emojisearch:${{ github.sha }}
