@@ -11,7 +11,7 @@ export default class Header extends PureComponent {
           height="32"
           alt=""
         />
-        Emoji Search para Azure Cloud Week
+        Emoji Search para Azure Cloud Week 2022
         <img
           src="//cdn.jsdelivr.net/emojione/assets/png/1f63a.png"
           width="32"
